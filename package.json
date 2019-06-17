@@ -17,7 +17,6 @@
     "errorhandler": "1.5.x",
     "express": "4.15.x",
     "method-override": "2.3.x",
-    "morgan": "1.8.x",
     "tag-cloud": "^1.1.4",
     "watson-developer-cloud": "^3.9.0",
     "xmlhttprequest": "^1.8.0"
