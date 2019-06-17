@@ -11,12 +11,12 @@ myAppModule.config(function($routeProvider,$locationProvider) {
             templateUrl: 'views/diseases/outbreak.html',
             controller: 'diseasesController'
         }).when('/', {                                        
-        	templateUrl: 'views/landing.html',
+        	templateUrl: 'views/login/signin.html',
             controller: 'userController'
         }).when('/ngo/dashboard', {
             templateUrl: 'views/dashboard/dashboard.html',
             controller: 'dashboardController'
-        }).when('/hospital/dashboard', {
+        }).when('/kiosk/dashboard', {
             templateUrl: 'views/hospital/hospitalDashboard.html',
             controller: 'hospitalDashboardController'
         }).when('/hospital/patientDetails', {

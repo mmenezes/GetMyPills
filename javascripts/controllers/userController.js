@@ -20,14 +20,7 @@ $http.post('/login',params).success(function(data) {
       
   $window.localStorage.setItem("isLoggedinHospital", true);  
   
-  if($scope.loggedinUserType=="hospital"){
-	  $location.path('/hospital/dashboard');
-  }
-
-  if($scope.loggedinUserType=="ngo"){
-      $location.path('/ngo/dashboard');
-  }
-  
+  $location.path('/kiosk/dashboard');
 
 }).error(function(data) {
   alert('Invalid Username or Password')
