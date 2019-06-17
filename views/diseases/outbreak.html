@@ -1,0 +1,303 @@
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <title>Data Tables</title>
+    <style>
+        #loader {
+            transition: all .3s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            z-index: 90000
+        }
+        
+        #loader.fadeOut {
+            opacity: 0;
+            visibility: hidden
+        }
+		.chartLabel{
+			 text-align: center;
+		}
+		.chartStyle{
+		    padding-top: 2%;
+			padding-left: 30%;
+		}
+		.piChartStyle{
+			display: block;
+			width: 150px !important;
+			height: 150px !important;
+		}
+        .chatComp{
+			height:46%;
+		}
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+            animation: sk-scaleout 1s infinite ease-in-out
+        }
+        
+        @-webkit-keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1);
+                opacity: 0
+            }
+        }
+        
+        @keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                opacity: 0
+            }
+        }
+		/*word cloud*/
+		.bucket1 {
+		  color: red;
+		}
+		 
+		.bucket2 {
+		  color: blue;
+		}
+		 
+		.bucket3 {
+		  color: yellow;
+		}
+    </style>
+	<script>
+		var ctx = document.getElementById("myChart").getContext('2d');
+		data = {
+			 datasets: [{
+				data: [45, 25, 20, 10],
+				backgroundColor: [
+					'#ff6384',
+					'#36a2eb',
+					'#cc65fe',
+					'#ffce56',
+				]
+			}],
+			labels: ['Age 0-15', 'Age 15-40', 'Age 40-60', 'Age 60+'],
+			
+		};
+		var myDoughnutChart = new Chart(ctx, {
+			type: 'doughnut',
+			data: data,
+			options: {
+						legend: {
+							display: false
+						},
+						
+					}
+			
+		});
+		
+		
+		
+</script>
+    <link href="style/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="../node_modules/angular-tag-cloud/src/css/ng-tag-cloud.css">
+</head>
+
+
+<body class="app">
+  <!--  <div id="loader">
+        <div class="spinner"></div>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('fadeOut');
+            }, 300);
+        });
+
+    </script>-->
+    <div>
+        
+           <div ng-include="'../header/header.html'"></div>
+            <main class="main-content bgc-grey-100">
+                <div id="mainContent">
+                    <div class="container-fluid">
+						<!--<div class="mT-30">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">Launch demo modal</button>
+                              
+                         </div> -->
+                         <div class="row">
+							<div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
+								<div class="bgc-white bd bdrs-3 p-20 mB-20">
+                            <h4 class="c-grey-900 mB-20">Latest Cases Reported</h4>
+                            <div id="dataTable_wrapper" class="dataTables_wrapper">
+                                <div class="dataTables_length" id="dataTable_length">
+                                 <!--   <label>Show
+                                        <select name="dataTable_length" aria-controls="dataTable" class="">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entries</label>-->
+                                </div>
+                              <!--  <div id="dataTable_filter" class="dataTables_filter">
+                                    <label>Search:
+                                        <input type="search" class="" placeholder="" aria-controls="dataTable">
+                                    </label>
+                                </div>-->
+                                
+                                <table id="dataTable" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 212px;">Hospital</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 312px;">Occupation</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 159px;">Village/Town</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 60px;">Age</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 138px;">Date Reported</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 131px;">Key Symptoms</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr  ng-repeat="item in result">
+                                            <td class="sorting_1">{{item.hospital_name}}</td>
+                                            <td>{{item.patient_occ}}</td>
+                                            <td>{{item.City}}</td>
+                                            <td>{{item.patient_age}}</td>
+                                            <td>{{item.date_updated}}</td>
+                                            <td>{{item.Symptoms_reported}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                               <!-- <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>-->
+                              <!--  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><a class="paginate_button previous disabled" aria-controls="dataTable" data-dt-idx="0" tabindex="0" id="dataTable_previous">Previous</a><span><a class="paginate_button current" aria-controls="dataTable" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="dataTable" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="dataTable" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="dataTable" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="dataTable" data-dt-idx="5" tabindex="0">5</a><a class="paginate_button " aria-controls="dataTable" data-dt-idx="6" tabindex="0">6</a></span><a class="paginate_button next" aria-controls="dataTable" data-dt-idx="7" tabindex="0" id="dataTable_next">Next</a></div>-->
+                            </div>
+                        </div>
+							</div>
+							<div class="peer bdL p-20 w-30p@lg+ w-100p@lg-">
+								<div class="row chatComp" >
+										<div >
+											    <div class="box box-danger">
+													<div class="box-header with-border">
+														<h3 class="box-title">Talk to early Responders</h3>
+
+														<div class="box-tools pull-right">
+															<!-- <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+											</button>-->
+														</div>
+													</div>
+													<!-- /.box-header -->
+													<div class="box-body no-padding">
+														<ul class="users-list clearfix">
+															<li>
+																<img src="/public/images/user1-128x128.jpg" alt="User Image">
+																<a class="users-list-name" ng-click="sendMessage('+91 7720238787')" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" href="#">Alexander Pierce</a>
+																<span class="users-list-date">Today</span>
+															</li>
+															<li>
+																<img src="/public/images/user8-128x128.jpg" alt="User Image">
+																<a class="users-list-name" class="btn btn-primary"  ng-click="sendMessage('+92 8220238787')"  data-toggle="modal" data-target="#emailModal" href="#">Norman</a>
+																<span class="users-list-date">Yesterday</span>
+															</li>
+															<li>
+																<img src="/public/images/user7-128x128.jpg" alt="User Image">
+																<a class="users-list-name" class="btn btn-primary"  ng-click="sendMessage('+94 9420238787')"  data-toggle="modal" data-target="#emailModal" href="#">Jane</a>
+																<span class="users-list-date">12 Jan</span>
+															</li>
+															<li>
+																<img src="/public/images/user6-128x128.jpg" alt="User Image">
+																<a class="users-list-name"  class="btn btn-primary"  ng-click="sendMessage('+96 9320238787')"  data-toggle="modal" data-target="#emailModal"href="#">John</a>
+																<span class="users-list-date">12 Jan</span>
+															</li>
+															<li>
+																<img src="/public/images/user2-160x160.jpg" alt="User Image">
+																<a class="users-list-name" ng-click="sendMessage('+96 9120238787')" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" href="#">Alexander</a>
+																<span class="users-list-date">13 Jan</span>
+															</li>
+															<li>
+																<img src="/public/images/user5-128x128.jpg" alt="User Image">
+																<a class="users-list-name" ng-click="sendMessage('+96 7700231287')" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" href="#">Sarah</a>
+																<span class="users-list-date">14 Jan</span>
+															</li>
+															<li>
+																<img src="/public/images/user4-128x128.jpg" alt="User Image">
+																<a class="users-list-name" class="btn btn-primary"  ng-click="sendMessage('+91 8020238787')"  data-toggle="modal" data-target="#emailModal" href="#">Nora</a>
+																<span class="users-list-date">15 Jan</span>
+															</li>
+															<li>
+																<img src="/public/images/user3-128x128.jpg" alt="User Image">
+																<a class="users-list-name" ng-click="sendMessage('+96 9120238787')" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" href="#">Nadia</a>
+																<span class="users-list-date">15 Jan</span>
+															</li>
+														</ul>
+														<!-- /.users-list -->
+													</div>
+													<!-- /.box-body -->
+													<div class="box-footer text-center">
+														<a href="javascript:void(0)" class="uppercase">View All Users</a>
+													</div>
+													<!-- /.box-footer -->
+												</div>
+											</div>
+									</div>
+								<div class="row">
+									<div class="chartStyle">
+										<div class="chartLabel">
+											<h5>Age Breakup</h5>
+										</div>
+										<canvas id="myChart" width="400" height="400" class = "piChartStyle"></canvas>
+									</div>
+								</div>
+								<div class="row">
+									<div class="">
+										<ng-tag-cloud cloud-width="400" cloud-height="250" cloud-data="tagData"></ng-tag-cloud>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+				<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				 <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					   <div class="modal-header">
+						  <h4 class="c-grey-900 mB-20">Send Message</h4>
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					   </div>
+					   <div class="modal-body">
+							<div class="email-compose">
+							 <div class="d-n@md+ p-20"><a class="email-side-toggle c-grey-900 cH-blue-500 td-n" href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+							 <form class="email-compose-body">
+								<div class="send-header">
+								   <div class="form-group"><input type="text" class="form-control" id="ph-Number" ></div>
+								   <div class="form-group"><textarea name="compose" class="form-control" placeholder="Hi..." rows="10"></textarea></div>
+								</div>
+								<div id="compose-area"></div>
+								<div class="text-right mrg-top-30"><button class="btn btn-danger" data-dismiss="modal">Send</button></div>
+							 </form>
+						  </div>
+					   </div>
+					</div>
+				 </div>
+				   <div style="padding-left:70%"> <a href = "/ngo/dashboard"><< Back to dashboard</a></div>
+			  </div>
+            </main>
+        </div>
+     
+</body>
+
+

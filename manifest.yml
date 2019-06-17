@@ -1,0 +1,9 @@
+applications:
+  - path: .
+    name: C4C_EpidemicDetection
+    environment_json: {}
+    memory: 128M
+    instances: 1
+    disk_quota: 1024M
+    services:
+      - testappwithcloudant-cloudantNoSQLDB

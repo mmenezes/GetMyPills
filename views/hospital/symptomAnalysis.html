@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+ <head>
+    <meta charset="utf-8">
+</head>
+ <body class="app">
+    <div>
+        <div class="page-container">
+			<div ng-include="'../header/header.html'"></div>
+            <main class="main-content bgc-grey-100">
+                <div id="mainContent">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                                    <p>Thank You For Submitting the case with us.<br />
+                                    Following are the analysis performed by the platform based on parameters provided and the cases reported in your area</p>
+                                    <table class="table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Disease</th>
+                                                <th scope="col">Common Symptoms</th>
+                                                <th scope="col">Depicted Symptoms</th>
+                                                <th scope="col">Age Range</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in result">
+                                                <th scope="row">{{item.diseaseName}}</th>
+                                                <td>
+                                                    <span ng-repeat="sym in item.symptoms">
+                                                        {{sym}}<br />
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span ng-repeat="sym in item.detectedSymptoms">
+                                                        {{sym}}<br />
+                                                    </span>
+                                                </td>
+                                                <td>{{item.ageRange}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>In Case of further data like test kits and further support please connect.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div style="padding-left:70%"> <a href = "/hospital/dashboard"><< Back to dashboard</a></div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+ </html> 
