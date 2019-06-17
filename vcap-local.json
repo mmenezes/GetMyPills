@@ -1,21 +1,21 @@
 {
     "cloudantNoSQLDB": [
         {
-            "name": "RapidCare",
-            "instance_name": "RapidCare",
+            "name": "GetMyPills",
+            "instance_name": "getmypills",
             "binding_name": null,
             "credentials": {
-            	  "apikey": "QByi2qjaIZ10s6YwziYl0-n656gp0q2BnOk5gwU4PJcj",
-            	  "host": "6127a88f-a390-401b-96a1-cbd9eea38ef2-bluemix.cloudant.com",
-            	  "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloudantnosqldb:eu-gb:a/e3c34bcdf50171b28ba2f66d2900cc38:92448f63-b06f-4eac-852f-1511e76dfb88::",
-            	  "iam_apikey_name": "auto-generated-apikey-d3b4c8f3-4dcc-4812-a109-828fad14148d",
-            	  "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-            	  "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/e3c34bcdf50171b28ba2f66d2900cc38::serviceid:ServiceId-6c6c61fb-e7eb-4de8-a6a2-dfcb6c1e2681",
-            	  "password": "66a1bd015f00a775372947f7a305b216d85df2068f6190b331377018e3a6036c",
-            	  "port": 443,
-            	  "url": "https://6127a88f-a390-401b-96a1-cbd9eea38ef2-bluemix:66a1bd015f00a775372947f7a305b216d85df2068f6190b331377018e3a6036c@6127a88f-a390-401b-96a1-cbd9eea38ef2-bluemix.cloudant.com",
-            	  "username": "6127a88f-a390-401b-96a1-cbd9eea38ef2-bluemix"
-            	},
+              "apikey": "eK4tCdMNW6xYC92brTgIkKlnQ6JPgaidN4R1zxVdu5hQ",
+              "host": "c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix.cloudantnosqldb.appdomain.cloud",
+              "iam_apikey_description": "Auto-generated for key 231d8e1b-463e-4b90-98d8-f06f3ae4c7e1",
+              "iam_apikey_name": "Service credentials-1",
+              "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+              "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/7096332e418a41a880507ef4e4a9cad0::serviceid:ServiceId-aa35a6fd-6c29-4b18-93fb-a9aadc6af583",
+              "password": "de54fe66611ebf62ba9fa533da921ea7f2bafa8fa9d23512ad431c87632fe525",
+              "port": 443,
+              "url": "https://c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix:de54fe66611ebf62ba9fa533da921ea7f2bafa8fa9d23512ad431c87632fe525@c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix.cloudantnosqldb.appdomain.cloud",
+                "username": "c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix"
+            },
 
             "syslog_drain_url": null,
             "volume_mounts": [],
