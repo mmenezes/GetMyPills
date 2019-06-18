@@ -21,9 +21,9 @@ angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$h
 
 
 
-    $scope.getpatientDetails = function () {
+    $scope.getOrderDetails = function () {
            $scope.loading = true;
-        $http.get('/api/getPatients').success(function (data) {
+        $http.get('/api/getOrders').success(function (data) {
             $scope.result = data.result;
             console.log(JSON.stringify(data.result[0]));
            // $scope.columnsReady = true;
@@ -66,7 +66,7 @@ angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$h
         });
     };
 
-    $scope.getpatientDetails();
+    $scope.getOrderDetails();
 
 }]);
 

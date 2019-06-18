@@ -121,7 +121,7 @@ app.post('/login', userController.login);
 app.post('/getregion', userController.getregion);
 /*Added method to get Patient Details */
 
-app.get('/api/getPatients', function (request, response) {
+app.get('/api/getOrders', function (request, response) {
     console.log("Get method invoked.. ")
 
     db = cloudant.use(dbCredentials.dbName);
@@ -135,7 +135,7 @@ app.get('/api/getPatients', function (request, response) {
             } else {
                 var query = {
                     "selector": {
-                        "document_type": "symptoms"
+                        "document_type": "orders"
                     }
                 };
 
