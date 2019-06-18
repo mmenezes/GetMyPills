@@ -268,35 +268,82 @@ app.get('/api/getSymptoms', function (request, response) {
     });
 });
 
+app.get('/api/getHealthTips', function (request, response) {
+    console.log("Get method invoked.. ")
+	
+	db = cloudant.use(dbCredentials.dbName);
 
-app.post('/api/addVolunteer', function (request, response) {
+    db.list(function (err, body) {
+        if (!err) {
+            var len = body.rows.length;
+            console.log('total # of docs -> ' + len);
+            if (len == 0) {
+
+            } else {
+                var query = {
+                    "selector": {
+					"$and": [
+							{
+								"document_type": {
+									"$eq":"health_tips"
+								}
+							},
+							{	"condition": {
+									"$eq" : request.query.condition_type
+								}
+							}
+						]
+					}
+                };
+
+                db.find(query, function (err, doc) {
+                    if (!err) {
+                        console.log(doc.docs);
+                        return response.json({ result: doc.docs });
+                        //   response.write(JSON.stringify(doc.docs));
+                        console.log('ending response...');
+                        response.end();
+                    }
+                    else {
+                        console.log(err);
+                    }
+                });
+            }
+
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+app.post('/api/addLogReadings', function (request, response) {
     console.log("Post method invoked.. ")
     console.log(request.body);
-    var newVaolunteer=request.body;
-		
+    var newLogEntry=request.body;
+	var today = new Date();
+	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	
     dbInsertQuery = { 
-					  "document_type": "volunteer", 
-					  "name": newVaolunteer.name, 
-					  "age": newVaolunteer.age, 
-					  "contact":newVaolunteer.contact, 
-					  "specialization": newVaolunteer.specialization, 
-					  "associatedWith": newVaolunteer.associatedWith, 
-					  "country": newVaolunteer.country, 
-					  "state": newVaolunteer.state,
-					  "zip":newVaolunteer.zip,
-					  "userName":newVaolunteer.userName,
-					  "password":newVaolunteer.password 	
+					  "document_type": "logs", 
+					  "cust_name": newLogEntry.cust_name, 
+					  "test_type": newLogEntry.type, 
+					  "value": newLogEntry.value,
+					  "remarks": newLogEntry.remarks,
+					  "log_date": date + " " + time 	
 					}
             console.log(dbInsertQuery)
 
             db = cloudant.use(dbCredentials.dbName);
             db.insert(dbInsertQuery, function (er, result) {
                 if (er) {
+					response.sendStatus(500);
                     throw er;
                 }
 
                 //return response.json({ result: data });
                 console.log('ending response...');
+				response.sendStatus(200);
                 response.end();
      });
 	// response.send('POST request to the homepage')
