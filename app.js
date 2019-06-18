@@ -20,7 +20,7 @@ var cloudant;
 var fileToUpload;
 
 var dbCredentials = {
-    dbName: 'getmypills'
+    dbName: 'getpillsapp'
 };
 
 var bodyParser = require('body-parser');

@@ -1,7 +1,7 @@
 {
     "cloudantNoSQLDB": [
         {
-            "name": "GetMyPills",
+            "name": "getmypills",
             "instance_name": "getmypills",
             "binding_name": null,
             "credentials": {
