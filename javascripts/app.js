@@ -19,6 +19,9 @@ myAppModule.config(function($routeProvider,$locationProvider) {
         }).when('/kiosk/dashboard', {
             templateUrl: 'views/hospital/hospitalDashboard.html',
             controller: 'hospitalDashboardController'
+        }).when('/kiosk/getcustomerslist', {
+            templateUrl: 'views/customer/customersList.html',
+            controller: 'customerController'
         }).when('/hospital/patientDetails', {
             templateUrl: 'views/hospital/patientDetails.html',
             controller: 'userController'                   
