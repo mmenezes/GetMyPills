@@ -303,6 +303,156 @@ app.post('/api/addVolunteer', function (request, response) {
 	
 });
 
+/*    
+    Expected response
+    result: {
+        "customers": [ 
+            {
+                "fName" : "John",
+                "lName" : "DSilva",
+                "city" : "Ponda"
+            },
+            {
+                "fName": "John",
+                "lName": "Seth",
+                "city": "Panjim",
+            }
+         ]
+    }
+*/
+app.get('/api/getCustomers', function (request, response) {
+
+    console.log("Get Customers method invoked.. ")
+
+    db = cloudant.use(dbCredentials.dbName);
+
+    db.list(function (err, body) {
+        if (!err) {
+            var len = body.rows.length;
+            console.log('total # of docs -> ' + len);
+            if (len == 0) {
+                console.log('No docs Found -> ' + len);
+            } else {
+                var query = {
+                    "selector": {
+                        "document_type": "customer",
+                    }
+                };
+
+                db.find(query, function (err, doc) {
+                    if (!err) {
+                        console.log(doc.docs);
+                        return response.json({ result: doc.docs });                        
+                    } else {
+                        console.log(err);
+                    }
+                });
+            }
+        } else {
+            console.log(err);
+        }
+    });    
+});
+
+/*
+    request.body: { 
+        "userName" : "jSeth"
+    }
+    Expected response
+    result: {
+        "fName": "John",
+        "lName": "Seth",
+        "occupation": "Teacher",
+        "city": "Panjim",
+        "state": "Goa"
+    }
+*/
+app.get('/api/getCustomerDetails', function (request, response) {
+
+    console.log("Get Customer Details method invoked.. ");
+    var userName = request.param('userName');
+
+    db = cloudant.use(dbCredentials.dbName);
+
+    db.list(function (err, body) {
+        if (!err) {
+            var len = body.rows.length;
+            console.log('total # of docs -> ' + len);
+            if (len == 0) {
+                console.log('No docs Found -> ' + len);
+            } else {
+                var query = {
+                    "selector": {
+                        "document_type": "customer",
+                        "userName": {
+                            "$eq": userName
+                         }
+                    }
+                };
+
+                db.find(query, function (err, doc) {
+                    if (!err) {
+                        console.log("customer details:" + doc);
+                        return response.json({ result: doc });                        
+                    } else {
+                        console.log(err);
+                    }
+                });
+            }
+        } else {
+            console.log(err);
+        }
+    });    
+});
+
+/*
+eg: request.body = {
+    cust_name:"John",
+    medications: [
+        {
+            "disease" : "Diabetes",
+            "treatment" :{
+                time: "09:00",
+                frequency: "Daily/Every Monday/Alternate Days"
+                medicine: "Insulin injection"
+            }        
+        },
+        {
+            "disease" : "High Blood pressure",
+            "treatment" :{
+                time: "18:00",
+                frequency: "Daily/Every Monday/Alternate Days/Daily before Sleeping"
+                medicine: "XYZ Tablet"
+            } 
+        }
+    ]
+}
+*/
+app.post('/api/checkin', function (request, response) {
+    console.log("Checkin method invoked.. ")
+    console.log(request.body);
+
+    var newCheckin = request.body;
+		
+    dbInsertQuery = { 
+					  "document_type": "order", 
+					  "userName": newCheckin.cust_name, 
+					  "medications": newCheckin.medications
+					  	
+					}
+            console.log(dbInsertQuery)
+
+            db = cloudant.use(dbCredentials.dbName);
+            db.insert(dbInsertQuery, function (err, result) {
+                if (err) {
+                    throw err;
+                }
+
+                console.log('ending response...');
+                response.end();
+     });	
+});
+
 app.use(express.static(__dirname));
 
 app.get('*', function(req, res) {
