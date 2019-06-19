@@ -417,7 +417,7 @@ app.get('/api/getCustomers', function (request, response) {
 app.get('/api/getCustomerDetails', function (request, response) {
 
     console.log("Get Customer Details method invoked.. ");
-    var userName = request.param('userName');
+    //var userName = request.param('userName');
 
     db = cloudant.use(dbCredentials.dbName);
 
@@ -430,21 +430,28 @@ app.get('/api/getCustomerDetails', function (request, response) {
             } else {
                 var query = {
                     "selector": {
-                        "document_type": "customer",
-                        "userName": {
-                            "$eq": userName
-                         }
-                    }
+					"$and": [
+							{
+								"document_type": {
+									"$eq":"customer"
+								}
+							},
+							{	"cust_name": {
+									"$eq" : request.query.userName
+								}
+							}
+						]
+					}
                 };
 
                 db.find(query, function (err, doc) {
                     if (!err) {
-                        console.log("customer details:" + doc);
-                        return response.json({ result: doc });                        
+                        console.log("customer details:" + doc.docs);
+                        return response.json({ result: doc.docs });
                     } else {
                         console.log(err);
                     }
-                });
+                });                
             }
         } else {
             console.log(err);
@@ -483,7 +490,7 @@ app.post('/api/checkin', function (request, response) {
 		
     dbInsertQuery = { 
 					  "document_type": "order", 
-					  "userName": newCheckin.cust_name, 
+					  "cust_name": newCheckin.cust_name, 
 					  "medications": newCheckin.medications
 					  	
 					}
@@ -492,12 +499,14 @@ app.post('/api/checkin', function (request, response) {
             db = cloudant.use(dbCredentials.dbName);
             db.insert(dbInsertQuery, function (err, result) {
                 if (err) {
+                    response.sendStatus(500);
                     throw err;
                 }
 
                 console.log('ending response...');
+                response.sendStatus(200);
                 response.end();
-     });	
+    });	
 });
 
 app.use(express.static(__dirname));
