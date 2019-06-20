@@ -22,7 +22,7 @@ myAppModule.config(function($routeProvider,$locationProvider) {
         }).when('/kiosk/getcustomerslist', {
             templateUrl: 'views/customer/customersList.html',
             controller: 'customerController'
-        }).when('/hospital/patientDetails', {
+        }).when('/kiosk/patientDashboard', {
             templateUrl: 'views/hospital/patientDetails.html',
             controller: 'userController'                   
         }).when('/hospital/symptomAnalysis', {
