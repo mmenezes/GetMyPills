@@ -1,5 +1,7 @@
 <head>
-
+	<title>
+	   Kiosk::Dashboard
+	</title>
    <style>
         .users-list>li img {
             border-radius: 50%;
@@ -219,7 +221,8 @@
 						  <div class="row">
 							<div class="col-md-8">
 							  <div class="chart-responsive">
-								<canvas id="pieChart" height="150"></canvas>
+								<!--canvas id="pieChart" height="150"></canvas-->
+								<canvas id="myChart" width="150" height="150" class = "piChartStyle"></canvas> 
 							  </div><!-- ./chart-responsive -->
 							</div><!-- /.col -->
 							<div class="col-md-4">
@@ -278,4 +281,33 @@
 			  </div> <!-- Before main -->
         </main>
     </div>
+    <script>
+		var ctx = document.getElementById("myChart").getContext('2d');
+		data = {
+			 datasets: [{
+				data: [700, 400, 50, 600, 300, 100],
+				backgroundColor: [
+					'#ff6384',
+					'#36a2eb',
+					'#f39c12',
+					'#00c0ef',
+					'#3c8dbc',
+					'#d2d6de'
+				]
+			}],
+			labels: ['Gluco sticks', 'Insuline', 'Lancets', 'Syringes', 'B P Machine', 'Blood Thinners'],
+		};
+		var myDoughnutChart = new Chart(ctx, {
+			type: 'doughnut',
+			data: data,
+			options: {
+						legend: {
+							display: false
+						},
+						
+					}
+			
+		});
+		
+</script>
 </body>
