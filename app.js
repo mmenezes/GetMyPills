@@ -436,7 +436,7 @@ app.get('/api/getCustomerDetails', function (request, response) {
 									"$eq":"customer"
 								}
 							},
-							{	"cust_name": {
+							{	"user_name": {
 									"$eq" : request.query.userName
 								}
 							}
@@ -446,8 +446,8 @@ app.get('/api/getCustomerDetails', function (request, response) {
 
                 db.find(query, function (err, doc) {
                     if (!err) {
-                        console.log("customer details:" + doc.docs);
-                        return response.json({ result: doc.docs });
+                        console.log("customer details:" + doc);
+                        return response.json({ result: doc });
                     } else {
                         console.log(err);
                     }
