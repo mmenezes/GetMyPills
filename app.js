@@ -461,25 +461,25 @@ app.get('/api/getCustomerDetails', function (request, response) {
 
 /*
 eg: request.body = {
-    cust_name:"John",
-    medications: [
-        {
-            "disease" : "Diabetes",
-            "treatment" :{
-                time: "09:00",
-                frequency: "Daily/Every Monday/Alternate Days"
-                medicine: "Insulin injection"
-            }        
-        },
-        {
-            "disease" : "High Blood pressure",
-            "treatment" :{
-                time: "18:00",
-                frequency: "Daily/Every Monday/Alternate Days/Daily before Sleeping"
-                medicine: "XYZ Tablet"
-            } 
-        }
-    ]
+    {
+	"userName": "John",
+	"medications": [{
+			"disease": "Diabetes",
+			"treatment": {
+				"time": "09:00",
+				"frequency": "Daily/Every Monday/Alternate Days",
+				"medicine": "Insulin injection"
+			}
+		},
+		{
+			"disease": "High Blood pressure",
+			"treatment": {
+				"time": "18:00",
+				"frequency": "Daily/Every Monday/Alternate Days/Daily before Sleeping",
+				"medicine": "XYZ Tablet"
+			}
+		}
+	]
 }
 */
 app.post('/api/checkin', function (request, response) {
@@ -490,7 +490,7 @@ app.post('/api/checkin', function (request, response) {
 		
     dbInsertQuery = { 
 					  "document_type": "order", 
-					  "cust_name": newCheckin.cust_name, 
+					  "user_name": newCheckin.userName, 
 					  "medications": newCheckin.medications
 					  	
 					}
