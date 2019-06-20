@@ -127,7 +127,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+				</div>
+				
                 <div class="row gap-20">
 				    <div class="col-md-8">
 						<!--table starts -->
@@ -250,52 +251,20 @@
 							<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 						  </div>
 						</div><!-- /.box-header -->
-						<div class="box-body">
+						<div ng-controller="hospitalDashboardController" class="box-body">
 						  <ul class="products-list product-list-in-box">
-							<li class="item">
-							  <div class="product-img">
-								<img src="images/diabetics.png" alt="Product Image">
-							  </div>
-							  <div class="product-info">
-								<a href="javascript::;" class="product-title">Virgil Brenner </a>
-								<span class="product-description">
-								  Age 63, Male, Dr Charles Freidman.
-								</span>
-							  </div>
-							</li><!-- /.item -->
-							<li class="item">
-							  <div class="product-img">
-								<img src="images/bp_icon.jpg" alt="Product Image">
-							  </div>
-							  <div class="product-info">
-								<a href="javascript::;" class="product-title">Cliff Younkin </a>
-								<span class="product-description">
-								  Age 65, Male, Dr Krishna Menon.
-								</span>
-							  </div>
-							</li><!-- /.item -->
-							<li class="item">
-							  <div class="product-img">
-								<img src="images/bp_icon.jpg" alt="Product Image">
-							  </div>
-							  <div class="product-info">
-								<a href="javascript::;" class="product-title">Margery Metcalf </a>
-								<span class="product-description">
-								  Age 75, Female, Dr Joel Neils.
-								</span>
-							  </div>
-							</li><!-- /.item -->
-							<li class="item">
-							  <div class="product-img">
-								<img src="images/diabetics.png" alt="Product Image">
-							  </div>
-							  <div class="product-info">
-								<a href="javascript::;" class="product-title">Shefali Joshi </a>
-								<span class="product-description">
-								  Age 65, Female, Dr Joel Neils
-								</span>
-							  </div>
-							</li><!-- /.item -->
+							<li ng-repeat="x in dataResults" class="item">
+								<div class="product-img">
+									<img ng-if="x.img" src="images/bp_icon.jpg" alt="Product Image">
+									<img ng-if="!x.img" src="images/diabetics.png" alt="Product Image">
+								</div>
+								<div class="product-info">
+									<a href="javascript::;" class="product-title">{{x.name}} </a>
+									<span class="product-description">
+										Age {{x.age}}, {{x.gender}}, {{x.doctor}}.
+									</span>
+							    </div>
+							</li>							
 						  </ul>
 						</div><!-- /.box-body -->
 						<div class="box-footer text-center">
@@ -307,7 +276,6 @@
 				 <div class="row gap-20">
 				 </div> 
 			  </div> <!-- Before main -->
-			  
         </main>
     </div>
 </body>

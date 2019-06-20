@@ -1,8 +1,6 @@
 angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$http', '$compile', 'DTOptionsBuilder', 'DTColumnBuilder', function ($scope, $http, $compile, DTOptionsBuilder, DTColumnBuilder) {
 
-
-
-    /*    $scope.getpatientDetails = function () {
+     /*    $scope.getpatientDetails = function () {
 
             $http.get('/api/getPatients').success(function (data) {
                 $scope.result = data.result;
@@ -22,7 +20,7 @@ angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$h
 
 
     $scope.getOrderDetails = function () {
-           $scope.loading = true;
+     /*      $scope.loading = true;
         $http.get('/api/getOrders').success(function (data) {
             $scope.result = data.result;
             console.log(JSON.stringify(data.result[0]));
@@ -55,7 +53,7 @@ angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$h
                 .withPaginationType('full_numbers')
                 .withDisplayLength('5')
                 .withOption('lengthMenu',[5,10,15])
-                /*withOption('lengthMenu', [5, 10, 15, 20, 25,-1]) */
+                /*withOption('lengthMenu', [5, 10, 15, 20, 25,-1]) * /
     
             //initialize the dataTable
             angular.element('#example').attr('datatable', '')
@@ -64,9 +62,36 @@ angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$h
         }).error(function (data) {
             console.log('Error: ' + data);
         });
+        */
     };
 
     $scope.getOrderDetails();
+
+    $scope.dataResults = [];
+
+    $scope.getCustomerList = function () {
+        console.log('pulling customers');
+        $scope.loading = true;
+        $http.get('/api/getCustomers').success(function (data) {
+            $scope.result = data.result;
+            console.log(JSON.stringify(data.result));
+
+            $scope.dataResults = [];
+            for (var i = 0 in $scope.result) {
+                $scope.dataResults.push({
+                    "name": $scope.result[i].cust_name,
+                    "age": $scope.result[i].age,
+                    "gender": $scope.result[i].gender,
+                    "doctor": $scope.result[i].doctor,
+                    "img": ($scope.result[i].condition == "Hypertension") ? 1 : 0
+                });
+            }        
+        }).error(function (data) {
+            console.log('Error: ' + data);
+        });
+    };
+
+    $scope.getCustomerList();
 
 }]);
 
