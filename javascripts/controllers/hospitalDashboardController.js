@@ -69,6 +69,31 @@ angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$h
 
     $scope.dataResults = [];
 
+	
+	$scope.getOrdersList = function () {
+        console.log('pulling orders');
+        $scope.loading = true;
+        $http.get('/api/getOrders').success(function (data) {
+            $scope.result = data.result;
+            console.log(JSON.stringify(data.result));
+
+            $scope.orderResults = [];
+            for (var i = 0 in $scope.result) {
+                $scope.dataResults.push({
+					"id" : $scope.result[i].order_id,
+                    "name": $scope.result[i].user_name,
+                    "medications": $scope.result[i].medications,
+                    "order_date": $scope.result[i].order_date,
+                    "status": $scope.result[i].status
+                });
+            }        
+        }).error(function (data) {
+            console.log('Error: ' + data);
+        });
+    };
+
+    $scope.getOrdersList();
+	
     $scope.getCustomerList = function () {
         console.log('pulling customers');
         $scope.loading = true;

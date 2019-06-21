@@ -135,7 +135,7 @@ app.get('/api/getOrders', function (request, response) {
             } else {
                 var query = {
                     "selector": {
-                        "document_type": "orders"
+                        "document_type": "order"
                     }
                 };
 
@@ -436,7 +436,7 @@ app.get('/api/getCustomerDetails', function (request, response) {
 									"$eq":"customer"
 								}
 							},
-							{	"user_name": {
+							{	"cust_name": {
 									"$eq" : request.query.userName
 								}
 							}
@@ -446,8 +446,8 @@ app.get('/api/getCustomerDetails', function (request, response) {
 
                 db.find(query, function (err, doc) {
                     if (!err) {
-                        console.log("customer details:" + doc);
-                        return response.json({ result: doc });
+                        console.log("customer details:" + doc.docs);
+                        return response.json({ result: doc.docs });
                     } else {
                         console.log(err);
                     }
@@ -461,38 +461,53 @@ app.get('/api/getCustomerDetails', function (request, response) {
 
 /*
 eg: request.body = {
-    {
-	"userName": "John",
-	"medications": [{
-			"disease": "Diabetes",
-			"treatment": {
-				"time": "09:00",
-				"frequency": "Daily/Every Monday/Alternate Days",
-				"medicine": "Insulin injection"
-			}
-		},
-		{
-			"disease": "High Blood pressure",
-			"treatment": {
-				"time": "18:00",
-				"frequency": "Daily/Every Monday/Alternate Days/Daily before Sleeping",
-				"medicine": "XYZ Tablet"
-			}
-		}
-	]
+    cust_name:"John",
+    medications: [
+        {
+            "disease" : "Diabetes",
+            "treatment" :{
+                time: "09:00",
+                frequency: "Daily/Every Monday/Alternate Days"
+                medicine: "Insulin injection"
+            }        
+        },
+        {
+            "disease" : "High Blood pressure",
+            "treatment" :{
+                time: "18:00",
+                frequency: "Daily/Every Monday/Alternate Days/Daily before Sleeping"
+                medicine: "XYZ Tablet"
+            } 
+        }
+    ]
 }
 */
+
+
 app.post('/api/checkin', function (request, response) {
     console.log("Checkin method invoked.. ")
     console.log(request.body);
 
     var newCheckin = request.body;
+	
+	var orderdate;
+	if (newCheckin.order_date!=null){
+		orderdate = newCheckin.order_date; 
+	}else{
+		var today = new Date();
+		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		orderdate = date;	
+	}
+	
+	var ord_id = Math.floor(1000 + Math.random() * 9000);
 		
     dbInsertQuery = { 
 					  "document_type": "order", 
-					  "user_name": newCheckin.userName, 
-					  "medications": newCheckin.medications
-					  	
+					  "order_id": "OR" + ord_id,
+					  "user_name": newCheckin.cust_name, 
+					  "medications": newCheckin.medications,
+					  "order_date" : orderdate,
+					  "status" : "Pending"
 					}
             console.log(dbInsertQuery)
 

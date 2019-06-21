@@ -77,9 +77,7 @@
      <div ng-include="'../header/header.html'"></div>
     <div>
         <main class="main-content bgc-grey-100">
-            <div id="mainContent">
-               
-
+            <div id="mainContent" ng-controller="hospitalDashboardController" >
                 <div class="row gap-20">
                     <div class="col-md-3">
                         <div class="layers bd bgc-white p-20">
@@ -152,51 +150,15 @@
 									  <th>Order ID</th>
 									  <th>Patient Name</th>
 									  <th>Status</th>
-									  <th>Time of Order</th>
+									  <th>Order Date</th>
 									</tr>
 								  </thead>
 								  <tbody>
-									<tr>
-									  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-									  <td> Branda Adger </td>
-									  <td><span class="label label-info">Pending</span></td>
-									  <td><div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div></td>
-									</tr>
-									<tr>
-									  <td><a href="pages/examples/invoice.html">OR1848</a></td>
-									  <td> Janean Lacaze </td>
-									  <td><span class="label label-info">Pending</span></td>
-									  <td><div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div></td>
-									</tr>
-									<tr>
-									  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-									  <td> Margery Metcalf </td>
-									  <td><span class="label label-info">Pending</span></td>
-									  <td><div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div></td>
-									</tr>
-									<tr>
-									  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-									  <td> Joe Cardinale </td>
-									  <td><span class="label label-info">Pending</span></td>
-									  <td><div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div></td>
-									</tr>
-									<tr>
-									  <td><a href="pages/examples/invoice.html">OR1848</a></td>
-									  <td> Virgil Brenner </td>
-									  <td><span class="label label-info">Pending</span></td>
-									  <td><div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div></td>
-									</tr>
-									<tr>
-									  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-									  <td> Weldon Eckhardt </td>
-									  <td><span class="label label-success">Delivered</span></td>
-									  <td><div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div></td>
-									</tr>
-									<tr>
-									  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-									  <td> Cliff Younkin </td>
-									  <td><span class="label label-success">Delivered</span></td>
-									  <td><div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div></td>
+									<tr ng-repeat="order in orderResults">
+									  <td><a href="pages/examples/invoice.html">{{order.id}}</a></td>
+									  <td> {{order.name}}</td>
+									  <td><span class="label label-info">{{order.status}}</span></td>
+									  <td><div class="label" data-color="#00a65a">{{order.date}}</div></td>
 									</tr>
 								  </tbody>
 								</table>
@@ -254,7 +216,7 @@
 							<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 						  </div>
 						</div><!-- /.box-header -->
-						<div ng-controller="hospitalDashboardController" class="box-body">
+						<div class="box-body">
 						  <ul class="products-list product-list-in-box">
 							<li ng-repeat="x in dataResults" class="item">
 								<div class="product-img">
