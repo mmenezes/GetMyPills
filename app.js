@@ -52,6 +52,14 @@ app.use(express.static(path.join(__dirname, 'javascripts')));
 app.use('/style', express.static(path.join(__dirname, '/views/style')));
 app.use('/user', user);
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, Profile-Id');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 // development only
 if ('development' == app.get('env')) {
     app.use(errorHandler());
