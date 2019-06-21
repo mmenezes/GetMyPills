@@ -926,7 +926,7 @@ a:focus {
   background-color: #eee;
 }
 .header {
-  background: blue !important;
+  background: #28a745 !important;
   color: black !important;
 }
 .header .header-container .nav-left > li > a {
@@ -2419,7 +2419,7 @@ a:focus {
 .nav > li > a:active,
 .nav > li > a:focus {
   color: black;
-  background: #1fc8db;
+  background: #227c02;
 }
 /* NAV PILLS */
 .nav-pills > li > a {
