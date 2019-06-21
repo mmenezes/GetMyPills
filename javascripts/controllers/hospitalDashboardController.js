@@ -79,7 +79,7 @@ angular.module('myApp').controller('hospitalDashboardController', ['$scope', '$h
 
             $scope.orderResults = [];
             for (var i = 0 in $scope.result) {
-                $scope.dataResults.push({
+                $scope.orderResults.push({
 					"id" : $scope.result[i].order_id,
                     "name": $scope.result[i].user_name,
                     "medications": $scope.result[i].medications,
