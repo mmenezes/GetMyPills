@@ -444,7 +444,7 @@ app.get('/api/getCustomerDetails', function (request, response) {
 									"$eq":"customer"
 								}
 							},
-							{	"cust_name": {
+							{	"user_name": {
 									"$eq" : request.query.userName
 								}
 							}
