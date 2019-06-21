@@ -262,7 +262,7 @@ a:focus {
   content: "\f0c9";
 }
 .main-header .sidebar-toggle:hover {
-  color: #fff;
+ /* color: #fff; */
 }
 .main-header .sidebar-toggle:focus,
 .main-header .sidebar-toggle:active {
@@ -925,6 +925,20 @@ a:focus {
 .dropdown-menu > .divider {
   background-color: #eee;
 }
+.header {
+  background: blue !important;
+  color: black !important;
+}
+.header .header-container .nav-left > li > a {
+  color: white !important;
+  font-weight: bold;
+}
+
+.header .header-container .nav-left > li > a:active {
+  color: black !important;
+  font-weight: bold;
+}
+
 .navbar-nav > .notifications-menu > .dropdown-menu,
 .navbar-nav > .messages-menu > .dropdown-menu,
 .navbar-nav > .tasks-menu > .dropdown-menu {
@@ -2404,8 +2418,8 @@ a:focus {
 .nav > li > a:hover,
 .nav > li > a:active,
 .nav > li > a:focus {
-  color: #444;
-  background: #f7f7f7;
+  color: black;
+  background: #1fc8db;
 }
 /* NAV PILLS */
 .nav-pills > li > a {
