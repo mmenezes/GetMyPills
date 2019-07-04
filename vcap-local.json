@@ -5,16 +5,16 @@
             "instance_name": "getmypills",
             "binding_name": null,
             "credentials": {
-              "apikey": "eK4tCdMNW6xYC92brTgIkKlnQ6JPgaidN4R1zxVdu5hQ",
-              "host": "c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix.cloudantnosqldb.appdomain.cloud",
+              "apikey": "iaiJIIsRYuvO4STW4nzOsIYCH_r3xTiWsIlfW1bbMT-9",
+              "host": "43d0d83c-2bce-4678-933d-29312652cce2-bluemix.cloudantnosqldb.appdomain.cloud",
               "iam_apikey_description": "Auto-generated for key 231d8e1b-463e-4b90-98d8-f06f3ae4c7e1",
-              "iam_apikey_name": "Service credentials-1",
-              "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+              "iam_apikey_name": "679a9743-e1c3-4b2a-b46c-8a979dc9065d",
+              "iam_role_crn": "crn:v1:bluemix:public:iam-identity::a/c9dc69cdab7342a5aa74da94f83c7610::serviceid:ServiceId-5b4999ba-5ee8-4843-9757-829a64797417",
               "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/7096332e418a41a880507ef4e4a9cad0::serviceid:ServiceId-aa35a6fd-6c29-4b18-93fb-a9aadc6af583",
-              "password": "de54fe66611ebf62ba9fa533da921ea7f2bafa8fa9d23512ad431c87632fe525",
+              "password": "946e4f4e396c40f3681fc8a224d24cb112ab95f8f07581cee404188b5f75c27b",
               "port": 443,
-              "url": "https://c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix:de54fe66611ebf62ba9fa533da921ea7f2bafa8fa9d23512ad431c87632fe525@c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix.cloudantnosqldb.appdomain.cloud",
-                "username": "c915b6b1-ab9e-4430-878d-9b3ed73f0c5f-bluemix"
+              "url": "https://43d0d83c-2bce-4678-933d-29312652cce2-bluemix:946e4f4e396c40f3681fc8a224d24cb112ab95f8f07581cee404188b5f75c27b@43d0d83c-2bce-4678-933d-29312652cce2-bluemix.cloudantnosqldb.appdomain.cloud",
+              "username": "43d0d83c-2bce-4678-933d-29312652cce2-bluemix"
             },
 
             "syslog_drain_url": null,

@@ -1,6 +1,6 @@
 applications:
   - path: .
-    name: C4C_EpidemicDetection
+    name: C4C_careforU
     environment_json: {}
     memory: 128M
     instances: 1
