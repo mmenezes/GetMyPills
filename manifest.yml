@@ -5,3 +5,5 @@ applications:
     memory: 512M
     instances: 1
     disk_quota: 2048M
+    services:
+      - Cloudant-03
