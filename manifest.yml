@@ -2,6 +2,6 @@ applications:
   - path: .
     name: C4C_careforU
     environment_json: {}
-    memory: 128M
+    memory: 512M
     instances: 1
-    disk_quota: 1024M 
+    disk_quota: 2048M
