@@ -1,5 +1,5 @@
 {
-  "name": "C4C_EpidemicDetection",
+  "name": "C4C_careforU",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -20,7 +20,8 @@
     "morgan": "1.9.x",
     "tag-cloud": "^1.1.4",
     "watson-developer-cloud": "^3.9.0",
-    "xmlhttprequest": "^1.8.0"
+    "xmlhttprequest": "^1.8.0",
+    "dotenv": "^8.0.0"
   },
   "repository": {},
   "engines": {
